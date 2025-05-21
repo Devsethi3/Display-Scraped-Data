@@ -24,7 +24,7 @@ import { isValidEmail } from "@/lib/utils";
 // Update the form schema to make types explicit
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
-  marketingOptIn: z.boolean().default(false),
+  marketingOptIn: z.preprocess((val) => val ?? false, z.boolean()),
 });
 
 // Define the form value type explicitly from the schema
@@ -37,7 +37,6 @@ export function TicketModal() {
 
   // React Hook Form with explicit typing
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       marketingOptIn: false,
