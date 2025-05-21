@@ -65,7 +65,7 @@ export function EventFilters({
     <div className="bg-background sticky top-[72px] z-30 border-b py-4">
       <div className="container">
         <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
-          {/* Search */}
+          {/* Searc */}
           <div className="relative w-full md:max-w-xs">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
