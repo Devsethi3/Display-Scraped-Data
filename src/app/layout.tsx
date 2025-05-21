@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Bricolage_Grotesque } from "next/font/google";
+import { TicketModalProvider } from "@/hooks/use-ticket-modal";
+import { Header } from "@/components/layouts/Header";
+import { Footer } from "@/components/layouts/Footer";
+import { TicketModal } from "@/components/modals/TicketModal";
+import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const font = Bricolage_Grotesque({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,11 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${font.className} antialiased`}>
+        <TicketModalProvider>
+          <Header />
+          <main className="pt-20 min-h-screen">{children}</main>
+          <Footer />
+          <TicketModal />
+          <Toaster />
+        </TicketModalProvider>
       </body>
     </html>
   );
